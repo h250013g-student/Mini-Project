@@ -1,0 +1,22 @@
+digraph LibraryClasses {
+  graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.45", ranksep="0.65", label="Library Management System — Class Diagram", labelloc=t, fontsize=18, fontname="Arial"];
+  node [shape=record, style="rounded,filled", fillcolor="#f4f7fb", color="#4b6178", fontname="Arial", fontsize=10, margin="0.12,0.08"];
+  edge [color="#4b6178", fontname="Arial", fontsize=9, arrowsize=0.8];
+  LibraryItem [label="{abstract LibraryItem| - id : String\l- title : String\l- available : boolean\l- borrowerId : String\l- dueDate : LocalDate\l|+ loanPeriodDays() : int\l+ getType() : String\l}"];
+  Book [label="{Book| |+ loanPeriodDays() : int\l+ getType() : String\l}"];
+  Dvd [label="{Dvd| |+ loanPeriodDays() : int\l+ getType() : String\l}"];
+  Borrowable [label="{interface Borrowable| |+ borrow(Member)\l+ giveBack()\l}", fillcolor="#fff6df"];
+  Member [label="{Member| - id : String\l- name : String\l- loanedItemIds : List\l|+ getId() : String\l+ getName() : String\l}"];
+  Loan [label="{Loan| - itemId : String\l- memberId : String\l- borrowedOn : LocalDate\l- dueDate : LocalDate\l}"];
+  Library [label="{Library| - items : Map\l- members : Map\l- activeLoans : Map\l|+ borrow(memberId, itemId)\l+ giveBack(itemId)\l+ searchByTitle(text)\l+ listOverdueItems()\l+ save() / load()\l}", fillcolor="#e9f5ed"];
+  LibraryManagementSystem [label="{LibraryManagementSystem| |+ main(args)\l}"];
+  Exceptions [label="{Custom exceptions|ItemNotAvailableException\lMemberLimitExceededException\l}", fillcolor="#fff0ee"];
+  Book -> LibraryItem [arrowhead=empty, label="extends"];
+  Dvd -> LibraryItem [arrowhead=empty, label="extends"];
+  LibraryItem -> Borrowable [style=dashed, arrowhead=empty, label="implements"];
+  Library -> LibraryItem [arrowhead=odiamond, label="manages"];
+  Library -> Member [arrowhead=odiamond, label="manages"];
+  Library -> Loan [arrowhead=odiamond, label="records"];
+  Library -> Exceptions [style=dashed, label="throws"];
+  LibraryManagementSystem -> Library [arrowhead=vee, label="uses"];
+}
