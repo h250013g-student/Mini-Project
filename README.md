@@ -1,4 +1,5 @@
-# Library Management System
+## H250013G LESLIE SARAI SOFTWARE ENGINEERING PART 2.1
+# Mini-Project : Library Management System
 
 A console-based library management application written in Java. It supports books and DVDs, member registration, borrowing and returns, title searches, overdue-item listings, and saving data between runs.
 
